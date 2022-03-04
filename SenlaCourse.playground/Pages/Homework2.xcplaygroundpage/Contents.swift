@@ -2,21 +2,27 @@ import Foundation
 
 
 example(of: "Import Substitution Automobile Factory") {
-    let rubbish1 = PrioraConveyor().conveyor()
-    print(rubbish1.getInfo)
-    rubbish1.fallOfWheels()
-    print()
+    let factory = ImportSubstitutionFactory()
     
-    let rubbish2 = KalinaConveyor().conveyor()
-    rubbish2.changeEngine(new: "tin")
-    print(rubbish2.getInfo)
-    rubbish2.deadEngine()
-    print()
+    if let rubbish1 = factory.conveyor(.priora) as? Priora {
+        print(rubbish1.getInfo)
+        print(rubbish1.getEngineInfo)
+        rubbish1.fallOfWheels()
+    }
     
-    let rubbish3 = VolgaConveyor().conveyor()
-    print(rubbish3.getInfo)
-    rubbish3.fallApart()
-    print()
+    if let rubbish2 = factory.conveyor(.kalina) as? Kalina {
+        rubbish2.changeEngine(to: "tin")
+        print(rubbish2.getInfo)
+        rubbish2.upgradeEngine(numberOfCylinders: 10, ecoLevel: -100, capacity: 10)
+        print(rubbish2.getEngineInfo)
+        rubbish2.deadEngine()
+        print(rubbish2.getEngineInfo)
+    }
     
-    print("All production count is \(ImportSubstitutionFactory.getProductionCount())")
+    if let rubbish3 = factory.conveyor(.volga) as? Volga {
+        print(rubbish3.getInfo)
+        rubbish3.fallApart()
+    }
+    
+    print("All production count is \(ImportSubstitutionFactory.productionCount)")
 }
