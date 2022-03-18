@@ -1,22 +1,21 @@
 import Foundation
 
 
-public protocol DealerDelegate {
+public protocol FactoryDelegate: AnyObject {
     
-    func getFromFactory(_ model: Conveyor, _ automobile: AutomobileInfo)
-    func shipToUnfortunate(_ model: Conveyor) -> AutomobileInfo?
+    func factoryDidCreated(automobile: Automobile, of type: CarType)
 }
 
-public class Dealer: DealerDelegate { // // Witness Table Dispatch
+public class Dealer: FactoryDelegate { // Witness Table Dispatch
     
-    var prioraStorage: [PrioraProtocol] = []
-    var kalinaStorage: [KalinaProtocol] = []
-    var volgaStorage: [VolgaProtocol] = []
+    private var prioraStorage: [PrioraProtocol] = []
+    private var kalinaStorage: [KalinaProtocol] = []
+    private var volgaStorage: [VolgaProtocol] = []
     
     public init() {}
     
-    public func getFromFactory(_ model: Conveyor, _ automobile: AutomobileInfo) {
-        switch model {
+    public func factoryDidCreated(automobile: Automobile, of type: CarType) {
+        switch type {
         case .priora:
             if let priora = automobile as? PrioraProtocol {
                 prioraStorage.append(priora)
@@ -32,7 +31,7 @@ public class Dealer: DealerDelegate { // // Witness Table Dispatch
         }
     }
     
-    public func shipToUnfortunate(_ model: Conveyor) -> AutomobileInfo? {
+    public func shipToUnfortunate(_ model: CarType) -> Automobile? {
         switch model {
         case .priora:
             if let priora = prioraStorage.popLast() {

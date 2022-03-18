@@ -1,7 +1,7 @@
 import Foundation
 
 
-protocol KalinaProtocol: AutomobileInfo, AutomobileDetails {
+protocol KalinaProtocol: Automobile {
     
     var ugliness: String { get set }
     

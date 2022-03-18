@@ -4,20 +4,20 @@ import Foundation
 example(of: "Import Substitution Automobile Factory") {
     let factory = ImportSubstitutionFactory()
     let dealer = Dealer()
-    factory.dealer = dealer
+    factory.delegate = dealer
     
     factory.conveyor(.priora)
     factory.conveyor(.kalina)
     factory.conveyor(.volga)
     
-    if var rubbish1 = factory.dealer?.shipToUnfortunate(.priora) as? Priora {
+    if var rubbish1 = dealer.shipToUnfortunate(.priora) as? Priora {
         print(rubbish1.getInfo)
         rubbish1.fallOfWheels()
         print(rubbish1.underestimated)
         print(rubbish1.getEngineInfo)
     }
     
-    if var rubbish2 = factory.dealer?.shipToUnfortunate(.kalina) as? Kalina {
+    if var rubbish2 = dealer.shipToUnfortunate(.kalina) as? Kalina {
         rubbish2.changeEngine(to: "tin")
         print(rubbish2.getInfo)
         rubbish2.upgradeEngine(numberOfCylinders: 10, ecoLevel: -100, capacity: 10)
@@ -27,7 +27,7 @@ example(of: "Import Substitution Automobile Factory") {
         rubbish2.tuning()
     }
     
-    if var rubbish3 = factory.dealer?.shipToUnfortunate(.volga) as? Volga {
+    if var rubbish3 = dealer.shipToUnfortunate(.volga) as? Volga {
         print(rubbish3.getInfo)
         print(rubbish3.forgottenGrandfathersCorpse)
         rubbish3.throwOutCorpse()

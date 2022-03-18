@@ -21,6 +21,17 @@ public protocol AutomobileDetails {
     mutating func fellOfSteeringWheel()
 }
 
+public protocol Automobile: AutomobileInfo, AutomobileDetails {
+    
+    func bipBip()
+}
+
+extension Automobile {
+    
+    public func bipBip() {
+        print("Bip/nBip")
+    }
+}
 extension AutomobileInfo {
     
     public var getInfo: String {

@@ -1,7 +1,7 @@
 import Foundation
 
 
-protocol PrioraProtocol: AutomobileInfo, AutomobileDetails {
+protocol PrioraProtocol: Automobile {
     
     var underestimated: String { get set }
     

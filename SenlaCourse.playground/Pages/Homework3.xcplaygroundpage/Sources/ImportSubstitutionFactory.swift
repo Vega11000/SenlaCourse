@@ -1,22 +1,22 @@
 import Foundation
 
 
-protocol Factory {
+public protocol Factory {
     
-    func conveyor(_ model: Conveyor)
+    func conveyor(_ model: CarType)
 }
 
 public class ImportSubstitutionFactory: Factory { // Witness Table Dispatch
     
-    public var dealer: DealerDelegate?
+    public var delegate: FactoryDelegate?
     public static var productionCount = 0
     
     public init() {}
     
-    public func conveyor(_ model: Conveyor) {
+    public func conveyor(_ model: CarType) {
         ImportSubstitutionFactory.productionCount += 1
         
-        var automobile: AutomobileInfo
+        var automobile: Automobile
         
         switch model {
         case .priora:
@@ -27,13 +27,11 @@ public class ImportSubstitutionFactory: Factory { // Witness Table Dispatch
             automobile = Volga(serialNumber: ImportSubstitutionFactory.productionCount)
         }
         
-        dealer?.getFromFactory(model, automobile)
+        delegate?.factoryDidCreated(automobile: automobile, of: model)
     }
-    
-    
 }
 
-public enum Conveyor: String {
+public enum CarType: String {
     case priora
     case kalina
     case volga

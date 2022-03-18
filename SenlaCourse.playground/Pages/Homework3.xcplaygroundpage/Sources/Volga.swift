@@ -1,7 +1,7 @@
 import Foundation
 
 
-protocol VolgaProtocol: AutomobileInfo, AutomobileDetails {
+protocol VolgaProtocol: Automobile {
     
     var forgottenGrandfathersCorpse: Bool { get set }
     
